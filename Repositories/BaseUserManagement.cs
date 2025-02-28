@@ -20,13 +20,12 @@ namespace AuthConfigAPI.Repositories
             Mapper = mapper;
         }
 
-        // ✅ Fixed GetAllUserData()
         public async Task<List<SignUpRequest>> GetAllUserData()
         {
             try
             {
-                var listOfAllUsers = await Users.ToListAsync(); // Fetch from Users (Generic)
-                return Mapper.Map<List<SignUpRequest>>(listOfAllUsers); // Ensure mapping to SignUpRequest
+                var listOfAllUsers = await Users.ToListAsync(); 
+                return Mapper.Map<List<SignUpRequest>>(listOfAllUsers);
             }
             catch (Exception ex)
             {
@@ -35,7 +34,6 @@ namespace AuthConfigAPI.Repositories
             }
         }
 
-        // ✅ Fixed GetUserData()
         public async Task<TUser> GetUserData(T userId)
         {
             try
@@ -43,7 +41,7 @@ namespace AuthConfigAPI.Repositories
                 var userData = await Users.FindAsync(userId);
                 if (userData == null)
                 {
-                    throw new KeyNotFoundException($"User with ID {userId} not found.");
+                    return null;
                 }
                 return userData;
             }

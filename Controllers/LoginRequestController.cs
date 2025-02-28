@@ -50,7 +50,6 @@ namespace AuthConfigAPI.Controllers
         {
             var accessToken = Request.Cookies["access_token"];
 
-
             if (string.IsNullOrEmpty(accessToken))
                 return Unauthorized(new { message = "Access denied" });
 

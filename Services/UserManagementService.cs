@@ -42,6 +42,7 @@ namespace AuthConfigAPI.Services
                     var isUserExistButNotVerified = await TemporarySignUpData.GetUserData(signupData.Email);
                     if (isUserExistButNotVerified != null)
                     {
+                        OtpService.SendEmailWithOtp(signupData);
                         throw new Exception("You have already signed up. Please verify your OTP.");
                     }
                     else
